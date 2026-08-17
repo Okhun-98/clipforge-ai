@@ -7,12 +7,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Copy everything (patches needed for pnpm install)
+# Copy everything
 COPY . .
 
 # Install dependencies and build
-RUN npm install -g corepack@latest && corepack pnpm install
-RUN corepack pnpm run build
+RUN npm ci
+RUN npm run build
 
 # Production environment
 ENV NODE_ENV=production
